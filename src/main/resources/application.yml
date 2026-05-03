@@ -1,0 +1,18 @@
+spring:
+  main:
+    web-application-type: none   # No HTTP server — MCP uses stdio transport
+    banner-mode: off             # Banner must not print to stdout (MCP reads stdout for JSON-RPC)
+  ai:
+    mcp:
+      server:
+        name: datalens-mcp
+        version: 1.0.0
+
+datalens:
+  security:
+    max-rows: 1000
+    query-timeout-sec: 30
+    max-query-length: 10000
+    allow-write: false
+  demo:
+    enabled: true

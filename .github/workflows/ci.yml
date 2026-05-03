@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run tests
+        run: ./mvnw verify
+
+      - name: Build JAR
+        run: ./mvnw package -DskipTests
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: datalens-mcp
+          path: target/datalens-mcp-*.jar
+          retention-days: 7

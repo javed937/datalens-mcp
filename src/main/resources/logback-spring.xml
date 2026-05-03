@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--
+        IMPORTANT: MCP stdio transport reads stdout for protocol messages.
+        All logging MUST go to stderr to avoid corrupting the MCP message stream.
+    -->
+    <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%logger{25}] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.datalens" level="DEBUG"/>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.springframework.ai" level="INFO"/>
+
+    <root level="WARN">
+        <appender-ref ref="STDERR"/>
+    </root>
+</configuration>

@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: datalens-postgres
+    environment:
+      POSTGRES_DB: datalens
+      POSTGRES_USER: datalens
+      POSTGRES_PASSWORD: datalens
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init/01-seed.sql:/docker-entrypoint-initdb.d/01-seed.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U datalens"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mysql:
+    image: mysql:8.3
+    container_name: datalens-mysql
+    environment:
+      MYSQL_DATABASE: datalens
+      MYSQL_USER: datalens
+      MYSQL_PASSWORD: datalens
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init/01-seed.sql:/docker-entrypoint-initdb.d/01-seed.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "datalens", "-pdatalens"]
+      interval: 5s
+      timeout: 5s
+      retries: 10

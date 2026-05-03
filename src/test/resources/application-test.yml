@@ -1,0 +1,17 @@
+spring:
+  main:
+    web-application-type: none
+
+datalens:
+  security:
+    max-rows: 100
+    query-timeout-sec: 10
+    max-query-length: 5000
+    allow-write: false
+  demo:
+    enabled: false
+
+logging:
+  level:
+    root: WARN
+    com.datalens: DEBUG
