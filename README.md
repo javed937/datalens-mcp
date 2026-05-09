@@ -210,6 +210,10 @@ claude mcp add datalens-mcp java -- -jar "C:\path\to\target\datalens-mcp-1.0.0.j
 
 # Write mode (enables INSERT/UPDATE/DELETE)
 claude mcp add datalens-mcp java -- -jar "C:\path\to\target\datalens-mcp-1.0.0.jar" --datalens.security.allow-write=true
+
+# To remove the added mcp
+claude mcp remove datalens-mcp
+
 ```
 
 Verify:
@@ -219,7 +223,7 @@ claude mcp list
 
 ### 3. Try the demo database
 
-The `demo` connection is registered automatically on startup. Open Claude and try:
+The `demo` connection is registered automatically on startup. Open Claude by typing claude and try:
 
 ```
 List all connections
